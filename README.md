@@ -1,7 +1,9 @@
-Homepage -
+Login (optional)
+Navbar - 
     toggle
-    Story highlighting top memes
     nav in left (for Desktop)
+Homepage -
+    Story highlighting top memes
 Explore
     debounced search
     filter
