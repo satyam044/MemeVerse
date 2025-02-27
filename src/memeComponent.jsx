@@ -28,9 +28,9 @@ const MemeComponent = ({ memeInfo }) => {
 
     return (
         <div className='w-full flex justify-center'>
-            <div style={{ padding: "1rem" }} className='wrapper w-[80%] flex items-center flex-col gap-8 bg-[#3a373327]'>
+            <div style={{ padding: "1rem" }} className='wrapper w-[70%] flex items-center flex-col gap-8 bg-[#3a373327]'>
                 {visibleMemes.map((info, id) => (
-                    <MemeCard key={info.id} memeData={info} />
+                    <MemeCard key={id} memeData={info} />
                 ))}
             </div>
         </div>

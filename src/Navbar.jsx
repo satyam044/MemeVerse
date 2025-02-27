@@ -9,7 +9,7 @@ const Navbar = () => {
     };
 
     return (
-        <div style={{padding:"0 1rem"}} className={`navbar h-[100vh] sticky top-0 border-r-[1px] flex flex-col justify-between transition-all duration-75 ease-in ${hamToggle ? "w-[4rem] items-center bg-[#3a373327]" : "w-[40%]"}`}>
+        <div style={{padding:"0 1rem"}} className={`navbar h-[100vh] sticky top-0 border-r-[1px] flex flex-col justify-between transition-all duration-75 ease-in ${hamToggle ? "w-[4rem] items-center bg-[#3a373327]" : "w-[30%]"}`}>
             <h2 style={{padding:"10px 0"}} className={`border-b-2 flex items-center w-[100%] ${hamToggle ? "justify-center" : "justify-between"}`}><a href="/" className='flex items-center gap-2 h-12 text-2xl rounded-[10px]'><span className={`${hamToggle && "hidden"}`}>MemeVerse</span></a><CiMenuFries onClick={handleHamToggle} /></h2>
             <ul style={{padding: "1rem 0"}} className='h-full flex flex-col gap-1'>
                 <li><a href="#" style={{paddingLeft:"4px"}} className='flex items-center gap-2 h-12 rounded-[10px] hover:bg-[#3a373327]'><CiHome /><span className={`${hamToggle && "hidden"}`}>Home</span></a></li>
