@@ -16,3 +16,7 @@ body{
     cursor: pointer;
     font-size: 2rem !important;
 }
+
+.filterSorter::-webkit-scrollbar{
+    width: 0;
+}

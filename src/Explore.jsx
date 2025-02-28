@@ -6,9 +6,9 @@ const Explore = () => {
     const [memeInfo, setMemeInfo] = useState([]);
     const [filteredMemes, setFilteredMemes] = useState([]);
     const [visibleMemes, setVisibleMemes] = useState([]);
-    const [count, setCount] = useState(10);
+    const [count, setCount] = useState(20);
     const [searchQuery, setSearchQuery] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('Trending');
     const [sortBy, setSortBy] = useState('Random');
 
     useEffect(() => {
@@ -22,9 +22,8 @@ const Explore = () => {
                 date: Date.now() - Math.floor(Math.random() * 1000000000),
             }));
             setMemeInfo(memesWithMeta);
-            setCategory('Trending');
         };
-
+    
         getMemes();
     }, []);
 
@@ -47,10 +46,14 @@ const Explore = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [count, filteredMemes]);
 
+    useEffect(() => {
+        handleCategoryChange(category);
+    }, [category]);
+
     const loadMoreMemes = () => {
         if (count >= filteredMemes.length) return;
-        setCount(prevCount => prevCount + 10);
-        setVisibleMemes(filteredMemes.slice(0, count + 10));
+        setCount(prevCount => prevCount + 20);
+        setVisibleMemes(filteredMemes.slice(0, count + 20));
     };
 
     const debounce = (func, delay) => {
@@ -66,8 +69,8 @@ const Explore = () => {
             meme.name.toLowerCase().includes(query.toLowerCase())
         );
         setFilteredMemes(filtered);
-        setCount(10);
-        setVisibleMemes(filtered.slice(0, 10));
+        setCount(20);
+        setVisibleMemes(filtered.slice(0, 20));
     }, 300), [memeInfo]);
 
     useEffect(() => {
@@ -88,8 +91,8 @@ const Explore = () => {
         }
 
         setFilteredMemes(filtered);
-        setCount(10);
-        setVisibleMemes(filtered.slice(0, 10));
+        setCount(20);
+        setVisibleMemes(filtered.slice(0, 20));
     };
 
     const handleSortChange = (event) => {
@@ -104,26 +107,28 @@ const Explore = () => {
         }
 
         setFilteredMemes(sortedMemes);
-        setVisibleMemes(sortedMemes.slice(0, 10));
+        setVisibleMemes(sortedMemes.slice(0, 20));
     };
 
     return (
         <div className='flex'>
             <Navbar />
             <div className='w-full flex justify-center'>
-                <div className='wrapper flex items-center flex-col gap-8 bg-[#3a373327] w-[70%] p-4'>
+                <div className='wrapper flex items-center flex-col gap-8 bg-[#3a373327] w-[80%] p-4'>
                     <input 
                         type='search' 
                         placeholder='Search Memes...' 
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className='w-[90%] sticky top-4 bg-[#9badb7] text-2xl capitalize outline-none border-2 rounded-2xl p-2'
+                        style={{padding:"2px 10px"}}
+                        className='w-[90%] sticky top-4 bg-[#9badb7] text-2xl capitalize outline-none border-2 rounded-2xl'
                     />
-                    <div className='w-[90%] flex justify-between items-center'>
+                    <div className='filterSorter w-[90%] overflow-auto flex justify-between gap-4 items-center'>
                         <div className="filter flex gap-2">
                             {['Trending', 'New', 'Classic', 'Random'].map(cat => (
                                 <button 
                                     key={cat} 
+                                    style={{padding:"2px 10px"}}
                                     className={`outline-none cursor-pointer border-2 rounded-2xl p-2 ${category === cat ? 'bg-gray-400' : ''}`} 
                                     onClick={() => setCategory(cat)}
                                 >
@@ -135,6 +140,7 @@ const Explore = () => {
                             <select 
                                 value={sortBy} 
                                 onChange={handleSortChange} 
+                                style={{padding:"2px 10px"}}
                                 className='outline-none border-2 rounded-2xl p-2'
                             >
                                 <option value="Random">Random</option>
